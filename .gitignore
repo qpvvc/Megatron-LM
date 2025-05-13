@@ -12,3 +12,11 @@ local/
 wandb/
 onelogger.log
 onelogger.err
+examples/llama3/nohup.out
+examples/llama3/pretrain_llama3_local.sh
+examples/llama3/pretrain_llama3.sh
+examples/llama3/tp1_pp1_cp1_gbs512_ac_local.sh
+examples/llama3/tp1_pp1_cp1_gbs512_ac.sh
+examples/llama3/llama2/tokenizer.model
+examples/llama3/logs_llama3
+.gitignore
