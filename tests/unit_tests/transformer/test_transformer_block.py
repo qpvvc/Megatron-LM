@@ -149,7 +149,7 @@ class TestPipelineParallelTransformerBlock:
             # Even PP
             (64, 4, None, False, False, None, None, False),
             # Even VPP
-            (64, 4, 8, False, False, None, None, False),
+            pytest.param(64, 4, 8, False, False, None, None, False, marks=pytest.mark.internal),
             # First pipeline stage has specified layers
             # Should distribute remaining layers evenly among other stages
             (60, 6, None, False, False, 5, None, False),
@@ -162,7 +162,7 @@ class TestPipelineParallelTransformerBlock:
             # Include embedding and loss in pipeline split without virtual PP
             (62, 4, None, True, True, None, None, False),
             # Include embedding and loss with virtual PP
-            (62, 4, 2, True, True, None, None, False),
+            pytest.param(62, 4, 2, True, True, None, None, False, marks=pytest.mark.internal),
             # num_layers not divisible by pipeline size without embedding/loss
             (65, 4, None, False, False, None, None, True),
             # num_layers not divisible by pipeline size with embedding/loss
@@ -174,9 +174,9 @@ class TestPipelineParallelTransformerBlock:
             # Uneven PP with embedding included (should assert per code)
             (60, 6, None, True, False, 5, 5, True),
             # Virtual PP where num_layers not divisible by total virtual stages
-            (50, 2, 7, False, False, None, None, True),
+            pytest.param(50, 2, 7, False, False, None, None, True, marks=pytest.mark.internal),
             # Edge case where num_layers per virtual rank is zero
-            (4, 4, 4, False, False, None, None, True),
+            pytest.param(4, 4, 4, False, False, None, None, True, marks=pytest.mark.internal),
         ],
     )
     def test_layer_builder(
